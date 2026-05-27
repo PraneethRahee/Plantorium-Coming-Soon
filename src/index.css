@@ -116,11 +116,12 @@ input:-webkit-autofill:active {
   }
 
   .logo-img {
-    max-width: 85vw !important;
+    max-width: 90vw !important;
   }
 
-  .logo-wrapper {
-    margin-top: -5vh !important;
+  .content-wrapper {
+    justify-content: flex-start !important;
+    padding-top: 3vh !important;
   }
 }
 
@@ -170,13 +171,13 @@ input:-webkit-autofill:active {
   }
 
   .logo-img {
-    max-width: 80vw !important;
+    max-width: 85vw !important;
   }
 }
 
 /* Small mobile - up to 360px */
 @media (max-width: 360px) {
   .logo-img {
-    max-width: 75vw !important;
+    max-width: 80vw !important;
   }
 }
