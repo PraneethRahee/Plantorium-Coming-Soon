@@ -23,6 +23,18 @@ html, body {
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Fix browser autofill - keep transparent look */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+  -webkit-text-fill-color: white !important;
+  caret-color: white !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background-color: transparent !important;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -97,9 +109,23 @@ html, body {
   }
 }
 
+/* Stack name + mobile on small screens */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column !important;
+  }
+
+  .logo-img {
+    max-width: 85vw !important;
+  }
+
+  .logo-wrapper {
+    margin-top: -5vh !important;
+  }
+}
+
 /* Mobile landscape / small tablets - up to 768px */
 @media (max-width: 768px) {
-  /* Hide right side plants */
   .plant-bg-right,
   .plant-fg-right {
     display: none;
@@ -118,11 +144,6 @@ html, body {
     height: 260px;
     left: -80px;
     bottom: -70px;
-  }
-
-  /* Enlarge logo on tablet */
-  .logo-img {
-    max-width: 260px;
   }
 }
 
@@ -148,15 +169,14 @@ html, body {
     bottom: -55px;
   }
 
-  /* Enlarge logo on mobile */
   .logo-img {
-    max-width: 280px;
+    max-width: 80vw !important;
   }
 }
 
 /* Small mobile - up to 360px */
 @media (max-width: 360px) {
   .logo-img {
-    max-width: 240px;
+    max-width: 75vw !important;
   }
 }

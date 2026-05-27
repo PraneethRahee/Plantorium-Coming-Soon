@@ -80,7 +80,7 @@ export function HeroContent() {
   }
 
   return (
-    <div style={{
+    <div className="hero-content" style={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -152,40 +152,39 @@ export function HeroContent() {
         marginTop: 'clamp(5px, 1.5vw, 10px)',
         width: 'min(500px, calc(100vw - 40px))'
       }}>
-        {/* Name Field */}
-        <div style={pillStyle}>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter your name"
-            disabled={loading}
-            required
-            style={inputStyle}
-          />
-        </div>
-
-        {/* Mobile Field */}
-        <div style={pillStyle}>
-          <input
-            type="tel"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-            placeholder="Enter your mobile number"
-            disabled={loading}
-            required
-            style={inputStyle}
-          />
-        </div>
-
-        {/* Email + Button */}
-        <div style={{
-          ...pillStyle,
+        {/* Name + Mobile Row */}
+        <div className="form-row" style={{
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: 'clamp(4px, 0.8vw, 6px)'
+          gap: 'clamp(8px, 1.2vw, 12px)',
+          width: '100%'
         }}>
+          <div style={{ ...pillStyle, flex: 1 }}>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+              disabled={loading}
+              required
+              style={inputStyle}
+            />
+          </div>
+
+          <div style={{ ...pillStyle, flex: 1 }}>
+            <input
+              type="tel"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="Enter your mobile number"
+              disabled={loading}
+              required
+              style={inputStyle}
+            />
+          </div>
+        </div>
+
+        {/* Email Field */}
+        <div style={pillStyle}>
           <input
             type="email"
             value={email}
@@ -193,35 +192,34 @@ export function HeroContent() {
             placeholder="Enter your email address"
             disabled={loading}
             required
-            style={{
-              ...inputStyle,
-              padding: 'clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 20px)'
-            }}
+            style={inputStyle}
           />
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              padding: 'clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 28px)',
-              backgroundColor: '#c9a876',
-              color: '#032E1D',
-              border: 'none',
-              borderRadius: '50px',
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: 600,
-              fontSize: 'clamp(12px, 1.8vw, 14px)',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              transition: 'opacity 0.3s',
-              whiteSpace: 'nowrap',
-              opacity: loading ? 0.7 : 1,
-              flexShrink: 0
-            }}
-            onMouseEnter={(e) => !loading && (e.target.style.opacity = '0.9')}
-            onMouseLeave={(e) => !loading && (e.target.style.opacity = '1')}
-          >
-            {loading ? 'Sending...' : 'Get in touch'}
-          </button>
         </div>
+
+        {/* Get in touch Button */}
+        <button
+          type="submit"
+          disabled={loading}
+          style={{
+            padding: 'clamp(12px, 1.8vw, 16px) clamp(40px, 8vw, 80px)',
+            backgroundColor: '#c9a876',
+            color: '#032E1D',
+            border: 'none',
+            borderRadius: '50px',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 600,
+            fontSize: 'clamp(13px, 1.8vw, 16px)',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            transition: 'opacity 0.3s',
+            whiteSpace: 'nowrap',
+            opacity: loading ? 0.7 : 1,
+            marginTop: 'clamp(2px, 0.5vw, 6px)'
+          }}
+          onMouseEnter={(e) => !loading && (e.target.style.opacity = '0.9')}
+          onMouseLeave={(e) => !loading && (e.target.style.opacity = '1')}
+        >
+          {loading ? 'Sending...' : 'Get in touch'}
+        </button>
       </form>
 
       {/* Status Message */}

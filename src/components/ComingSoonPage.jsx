@@ -23,7 +23,7 @@ export function ComingSoonPage() {
       <PlantDecorationRight />
       <PlantDecorationRightForeground />
 
-      <div style={{
+      <div className="content-wrapper" style={{
         position: 'relative',
         zIndex: 10,
         textAlign: 'center',
@@ -36,7 +36,7 @@ export function ComingSoonPage() {
         justifyContent: 'center',
         margin: '0 auto'
       }}>
-        <div style={{ marginBottom: 'clamp(15px, 3vw, 30px)', flexShrink: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <div className="logo-wrapper" style={{ flexShrink: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
           <Logo />
         </div>
 
