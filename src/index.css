@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Logo - desktop default */
+.logo-img {
+  max-width: clamp(180px, 35vw, 400px);
+}
+
+/* Plant decorations - desktop default */
+.plant-bg-right,
+.plant-bg-left {
+  position: fixed;
+  top: 65%;
+  transform: translateY(-50%);
+  width: 380px;
+  height: 600px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.plant-bg-right {
+  right: -40px;
+}
+
+.plant-bg-left {
+  left: -40px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+.plant-fg-right,
+.plant-fg-left {
+  position: fixed;
+  bottom: -100px;
+  width: 350px;
+  height: 350px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.plant-fg-right {
+  right: -100px;
+}
+
+.plant-fg-left {
+  left: -100px;
+  transform: scaleX(-1);
+}
+
+/* Tablet - screens up to 1024px */
+@media (max-width: 1024px) {
+  .plant-bg-right,
+  .plant-bg-left {
+    width: 280px;
+    height: 450px;
+  }
+
+  .plant-fg-right,
+  .plant-fg-left {
+    width: 250px;
+    height: 250px;
+    bottom: -60px;
+  }
+
+  .plant-fg-right {
+    right: -70px;
+  }
+
+  .plant-fg-left {
+    left: -70px;
+  }
+}
+
+/* Mobile landscape / small tablets - up to 768px */
+@media (max-width: 768px) {
+  /* Hide right side plants */
+  .plant-bg-right,
+  .plant-fg-right {
+    display: none;
+  }
+
+  .plant-bg-left {
+    width: 300px;
+    height: 480px;
+    left: -80px;
+    top: 60%;
+    opacity: 0.7;
+  }
+
+  .plant-fg-left {
+    width: 260px;
+    height: 260px;
+    left: -80px;
+    bottom: -70px;
+  }
+
+  /* Enlarge logo on tablet */
+  .logo-img {
+    max-width: 260px;
+  }
+}
+
+/* Mobile - up to 480px */
+@media (max-width: 480px) {
+  .plant-bg-right,
+  .plant-fg-right {
+    display: none;
+  }
+
+  .plant-bg-left {
+    width: 250px;
+    height: 400px;
+    left: -70px;
+    top: 58%;
+    opacity: 0.65;
+  }
+
+  .plant-fg-left {
+    width: 220px;
+    height: 220px;
+    left: -65px;
+    bottom: -55px;
+  }
+
+  /* Enlarge logo on mobile */
+  .logo-img {
+    max-width: 280px;
+  }
+}
+
+/* Small mobile - up to 360px */
+@media (max-width: 360px) {
+  .logo-img {
+    max-width: 240px;
+  }
+}
