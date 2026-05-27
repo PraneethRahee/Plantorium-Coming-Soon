@@ -42,7 +42,7 @@ input:-webkit-autofill:active {
 
 /* Logo - desktop default */
 .logo-img {
-  max-width: clamp(180px, 35vw, 400px);
+  max-width: clamp(180px, 40vw, 500px);
 }
 
 /* Plant decorations - desktop default */
@@ -126,6 +126,7 @@ input:-webkit-autofill:active {
 
   .hero-content .features-row {
     margin-bottom: 18px;
+    font-size: 16px !important;
   }
 
   .hero-content .coming-soon-heading {

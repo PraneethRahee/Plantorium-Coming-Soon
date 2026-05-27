@@ -117,7 +117,7 @@ export function HeroContent() {
       <h1 className="coming-soon-heading" style={{
         fontFamily: 'Brygada 1918, serif',
         fontWeight: 700,
-        fontSize: 'clamp(2rem, 10vw, 90px)',
+        fontSize: 'clamp(2rem, 8vw, 65px)',
         lineHeight: '100%',
         letterSpacing: '0px',
         color: 'white',
