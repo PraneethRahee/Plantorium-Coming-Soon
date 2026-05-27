@@ -90,7 +90,7 @@ export function HeroContent() {
       boxSizing: 'border-box'
     }}>
       {/* Features */}
-      <div style={{
+      <div className="features-row" style={{
         fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
         fontSize: 'clamp(11px, 2.5vw, 18px)',
@@ -114,7 +114,7 @@ export function HeroContent() {
       </div>
 
       {/* Coming Soon Heading */}
-      <h1 style={{
+      <h1 className="coming-soon-heading" style={{
         fontFamily: 'Brygada 1918, serif',
         fontWeight: 700,
         fontSize: 'clamp(2rem, 10vw, 90px)',

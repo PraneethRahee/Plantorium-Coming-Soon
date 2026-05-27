@@ -123,6 +123,14 @@ input:-webkit-autofill:active {
     justify-content: flex-start !important;
     padding-top: 3vh !important;
   }
+
+  .hero-content .features-row {
+    margin-bottom: 8px;
+  }
+
+  .hero-content .coming-soon-heading {
+    margin-bottom: 8px;
+  }
 }
 
 /* Mobile landscape / small tablets - up to 768px */
