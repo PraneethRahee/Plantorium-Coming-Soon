@@ -1,7 +1,28 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 
+const inputStyle = {
+  width: '100%',
+  padding: 'clamp(10px, 1.5vw, 14px) clamp(16px, 2vw, 24px)',
+  border: 'none',
+  backgroundColor: 'transparent',
+  color: 'white',
+  fontFamily: 'Inter, sans-serif',
+  fontSize: 'clamp(12px, 1.8vw, 14px)',
+  outline: 'none',
+  minWidth: 0
+}
+
+const pillStyle = {
+  border: '1px solid rgba(255, 255, 255, 0.3)',
+  borderRadius: '50px',
+  width: '100%',
+  backgroundColor: 'transparent'
+}
+
 export function HeroContent() {
+  const [name, setName] = useState('')
+  const [mobile, setMobile] = useState('')
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState({ text: '', type: '' })
@@ -10,7 +31,18 @@ export function HeroContent() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Basic email validation
+    // Validation
+    if (!name.trim()) {
+      setMessage({ text: 'Please enter your name.', type: 'error' })
+      return
+    }
+
+    const mobileRegex = /^[+]?[\d\s-]{7,15}$/
+    if (!mobileRegex.test(mobile)) {
+      setMessage({ text: 'Please enter a valid mobile number.', type: 'error' })
+      return
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       setMessage({ text: 'Please enter a valid email address.', type: 'error' })
@@ -23,7 +55,7 @@ export function HeroContent() {
     try {
       const { error } = await supabase
         .from('subscribers')
-        .insert([{ email }])
+        .insert([{ name: name.trim(), mobile: mobile.trim(), email: email.trim() }])
 
       if (error) {
         if (error.code === '23505') {
@@ -34,6 +66,8 @@ export function HeroContent() {
         }
       } else {
         setMessage({ text: "Thanks! We'll notify you at launch.", type: 'success' })
+        setName('')
+        setMobile('')
         setEmail('')
       }
     } catch (err) {
@@ -41,7 +75,6 @@ export function HeroContent() {
       console.error('Submission error:', err)
     } finally {
       setLoading(false)
-      // Auto-clear message after 5 seconds
       setTimeout(() => setMessage({ text: '', type: '' }), 5000)
     }
   }
@@ -110,60 +143,85 @@ export function HeroContent() {
         We are creating something amazing! our new website is under construction. Stay tuned for an awesome experience
       </p>
 
-      {/* Email Form */}
+      {/* Form */}
       <form onSubmit={handleSubmit} style={{
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        gap: 'clamp(8px, 1.2vw, 12px)',
         marginTop: 'clamp(5px, 1.5vw, 10px)',
-        border: '1px solid rgba(255, 255, 255, 0.3)',
-        borderRadius: '50px',
-        padding: 'clamp(4px, 0.8vw, 6px)',
-        width: 'min(500px, calc(100vw - 40px))',
-        backgroundColor: 'transparent'
+        width: 'min(500px, calc(100vw - 40px))'
       }}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email address"
-          disabled={loading}
-          required
-          style={{
-            flex: 1,
-            padding: 'clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 20px)',
-            border: 'none',
-            backgroundColor: 'transparent',
-            color: 'white',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: 'clamp(12px, 1.8vw, 14px)',
-            outline: 'none',
-            minWidth: 0
-          }}
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            padding: 'clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 28px)',
-            backgroundColor: '#c9a876',
-            color: '#032E1D',
-            border: 'none',
-            borderRadius: '50px',
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 600,
-            fontSize: 'clamp(12px, 1.8vw, 14px)',
-            cursor: loading ? 'not-allowed' : 'pointer',
-            transition: 'opacity 0.3s',
-            whiteSpace: 'nowrap',
-            opacity: loading ? 0.7 : 1,
-            flexShrink: 0
-          }}
-          onMouseEnter={(e) => !loading && (e.target.style.opacity = '0.9')}
-          onMouseLeave={(e) => !loading && (e.target.style.opacity = '1')}
-        >
-          {loading ? 'Sending...' : 'Get in touch'}
-        </button>
+        {/* Name Field */}
+        <div style={pillStyle}>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter your name"
+            disabled={loading}
+            required
+            style={inputStyle}
+          />
+        </div>
+
+        {/* Mobile Field */}
+        <div style={pillStyle}>
+          <input
+            type="tel"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+            placeholder="Enter your mobile number"
+            disabled={loading}
+            required
+            style={inputStyle}
+          />
+        </div>
+
+        {/* Email + Button */}
+        <div style={{
+          ...pillStyle,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: 'clamp(4px, 0.8vw, 6px)'
+        }}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email address"
+            disabled={loading}
+            required
+            style={{
+              ...inputStyle,
+              padding: 'clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 20px)'
+            }}
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              padding: 'clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 28px)',
+              backgroundColor: '#c9a876',
+              color: '#032E1D',
+              border: 'none',
+              borderRadius: '50px',
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 600,
+              fontSize: 'clamp(12px, 1.8vw, 14px)',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'opacity 0.3s',
+              whiteSpace: 'nowrap',
+              opacity: loading ? 0.7 : 1,
+              flexShrink: 0
+            }}
+            onMouseEnter={(e) => !loading && (e.target.style.opacity = '0.9')}
+            onMouseLeave={(e) => !loading && (e.target.style.opacity = '1')}
+          >
+            {loading ? 'Sending...' : 'Get in touch'}
+          </button>
+        </div>
       </form>
 
       {/* Status Message */}
