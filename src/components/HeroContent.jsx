@@ -144,7 +144,7 @@ export function HeroContent() {
       </p>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} style={{
+      <form onSubmit={handleSubmit} className="hero-form" style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
