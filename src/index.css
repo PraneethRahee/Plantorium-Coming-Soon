@@ -126,7 +126,8 @@ input:-webkit-autofill:active {
 
   .hero-content .features-row {
     margin-bottom: 18px;
-    font-size: 13px !important;
+    font-size: 11px !important;
+    flex-wrap: nowrap !important;
   }
 
   .hero-content .coming-soon-heading {
