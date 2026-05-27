@@ -43,10 +43,12 @@ export function HeroContent() {
       return
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      setMessage({ text: 'Please enter a valid email address.', type: 'error' })
-      return
+    if (email.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(email)) {
+        setMessage({ text: 'Please enter a valid email address.', type: 'error' })
+        return
+      }
     }
 
     setLoading(true)
@@ -55,7 +57,7 @@ export function HeroContent() {
     try {
       const { error } = await supabase
         .from('subscribers')
-        .insert([{ name: name.trim(), mobile: mobile.trim(), email: email.trim() }])
+        .insert([{ name: name.trim(), mobile: mobile.trim(), email: email.trim() || null }])
 
       if (error) {
         if (error.code === '23505') {
@@ -189,9 +191,8 @@ export function HeroContent() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email address"
+            placeholder="Enter your email address (optional)"
             disabled={loading}
-            required
             style={inputStyle}
           />
         </div>
@@ -222,18 +223,25 @@ export function HeroContent() {
         </button>
       </form>
 
-      {/* Status Message */}
+      {/* Toast Notification */}
       {message.text && (
-        <p style={{
+        <div className="toast" style={{
+          position: 'fixed',
+          bottom: '30px',
+          right: '30px',
+          zIndex: 1000,
+          padding: '14px 24px',
+          borderRadius: '12px',
+          backgroundColor: message.type === 'success' ? '#c9a876' : '#ff6b6b',
+          color: message.type === 'success' ? '#032E1D' : '#fff',
           fontFamily: 'Inter, sans-serif',
-          fontSize: 'clamp(12px, 1.8vw, 14px)',
-          color: message.type === 'success' ? '#c9a876' : '#ff6b6b',
-          margin: '0',
-          textAlign: 'center',
-          animation: 'fadeIn 0.3s ease-in'
+          fontSize: '14px',
+          fontWeight: 500,
+          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)',
+          animation: 'slideIn 0.4s ease-out'
         }}>
           {message.text}
-        </p>
+        </div>
       )}
     </div>
   )

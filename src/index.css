@@ -40,6 +40,28 @@ input:-webkit-autofill:active {
   to { opacity: 1; }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Logo - desktop default */
 .logo-img {
   max-width: clamp(180px, 40vw, 500px);
@@ -117,6 +139,15 @@ input:-webkit-autofill:active {
 
   .logo-img {
     max-width: 90vw !important;
+  }
+
+  .toast {
+    bottom: auto !important;
+    top: 20px !important;
+    right: 15px !important;
+    left: auto !important;
+    max-width: calc(100vw - 30px);
+    animation: slideInTop 0.4s ease-out !important;
   }
 
   .content-wrapper {
