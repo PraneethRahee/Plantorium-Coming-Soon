@@ -153,6 +153,11 @@ input:-webkit-autofill:active {
   .content-wrapper {
     justify-content: flex-start !important;
     padding-top: 3vh !important;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .hero-form button[type="submit"] {
+    margin-bottom: calc(10px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .hero-content .features-row {
