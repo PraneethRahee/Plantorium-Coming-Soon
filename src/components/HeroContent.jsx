@@ -93,7 +93,7 @@ export function HeroContent() {
       <div className="features-row" style={{
         fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
-        fontSize: 'clamp(11px, 2.5vw, 32px)',
+        fontSize: 'clamp(11px, 2.5vw, 18px)',
         lineHeight: '120%',
         letterSpacing: '0px',
         color: 'white',
