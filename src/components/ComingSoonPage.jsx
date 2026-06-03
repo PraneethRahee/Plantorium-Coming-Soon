@@ -34,7 +34,8 @@ export function ComingSoonPage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: '0 auto'
+        margin: '0 auto',
+        marginTop: '-3vh'
       }}>
         <div className="logo-wrapper" style={{ flexShrink: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
           <Logo />
