@@ -44,10 +44,12 @@ export function HeroContent() {
       return
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      setMessage({ text: 'Please enter a valid email address.', type: 'error' })
-      return
+    if (email.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(email)) {
+        setMessage({ text: 'Please enter a valid email address.', type: 'error' })
+        return
+      }
     }
 
     setLoading(true)
@@ -56,7 +58,7 @@ export function HeroContent() {
     try {
       const { error } = await supabase
         .from('subscribers')
-        .insert([{ name: name.trim(), mobile: mobile.trim(), email: email.trim() }])
+        .insert([{ name: name.trim(), mobile: mobile.trim(), email: email.trim() || null }])
 
       if (error) {
         if (error.code === '23505') {
@@ -273,9 +275,8 @@ export function HeroContent() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email address"
+            placeholder="Enter your email address (optional)"
             disabled={loading}
-            required
             style={inputStyle}
           />
         </div>
