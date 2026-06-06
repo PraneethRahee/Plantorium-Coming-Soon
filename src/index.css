@@ -168,6 +168,7 @@ input:-webkit-autofill:active {
 
   .hero-content .coming-soon-heading {
     margin-bottom: 28px;
+    font-size: calc(clamp(1.2rem, 4.5vw, 56px) + 4px) !important;
   }
 }
 
