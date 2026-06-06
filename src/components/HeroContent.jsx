@@ -145,9 +145,13 @@ export function HeroContent() {
         padding: '0 10px',
         whiteSpace: submitted ? 'nowrap' : 'normal'
       }}>
-        {submitted
-          ? 'Your message just showed up in my inbox. talk to you soon'
-          : "You bring the brief. We handle everything after. Leave your details and we'll start the conversation."}
+        {submitted ? (
+          'Your message just showed up in my inbox. talk to you soon'
+        ) : (
+          <>
+            You bring the brief. We handle everything after.<br className="mobile-break" /> Leave your details and we'll start the conversation.
+          </>
+        )}
       </p>
 
       {/* Form Wrapper */}

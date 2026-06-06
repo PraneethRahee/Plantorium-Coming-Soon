@@ -67,6 +67,11 @@ input:-webkit-autofill:active {
   max-width: clamp(180px, 30vw, 350px);
 }
 
+/* Hide mobile line break on desktop */
+.mobile-break {
+  display: none;
+}
+
 /* Plant decorations - desktop default */
 .plant-bg-right,
 .plant-bg-left {
@@ -168,7 +173,11 @@ input:-webkit-autofill:active {
 
   .hero-content .coming-soon-heading {
     margin-bottom: 28px;
-    font-size: calc(clamp(1.2rem, 4.5vw, 56px) + 4px) !important;
+    font-size: calc(clamp(1.2rem, 4.5vw, 56px) + 2px) !important;
+  }
+
+  .mobile-break {
+    display: inline !important;
   }
 }
 
