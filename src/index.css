@@ -179,6 +179,15 @@ input:-webkit-autofill:active {
   .mobile-break {
     display: inline !important;
   }
+
+  .subtext-line1 {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .hero-subtext {
+    font-size: 12px !important;
+  }
 }
 
 /* Mobile landscape / small tablets - up to 768px */

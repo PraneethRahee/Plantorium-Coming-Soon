@@ -132,7 +132,7 @@ export function HeroContent() {
       </h1>
 
       {/* Subtext */}
-      <p style={{
+      <p className="hero-subtext" style={{
         fontFamily: 'Inter, sans-serif',
         fontWeight: 400,
         fontSize: submitted ? 'clamp(11px, 1.8vw, 22px)' : 'clamp(13px, 2vw, 18px)',
@@ -149,7 +149,7 @@ export function HeroContent() {
           'Your message just showed up in my inbox. talk to you soon'
         ) : (
           <>
-            You bring the brief. We handle everything after.<br className="mobile-break" /> Leave your details and we'll start the conversation.
+            <span className="subtext-line1">You bring the brief. We handle everything after.</span><br className="mobile-break" /> Leave your details and we'll start the conversation.
           </>
         )}
       </p>
